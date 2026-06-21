@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>UFC 格斗信息索引 · 资料整理页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f2f7f9;
+      color: #1d2b32;
+      line-height: 1.6;
+      padding: 1.5rem 1rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* hero 简易版头 */
+    .hero {
+      background: linear-gradient(145deg, #d7ecee 0%, #bfe0e5 100%);
+      padding: 2.5rem 1.8rem;
+      border-radius: 32px;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 8px 18px rgba(50, 100, 110, 0.08);
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 550;
+      letter-spacing: -0.02em;
+      color: #084c52;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero .sub {
+      font-size: 1.1rem;
+      max-width: 680px;
+      color: #205b62;
+      opacity: 0.88;
+      border-left: 4px solid #3b8e94;
+      padding-left: 1rem;
+    }
+
+    /* 卡片网格 */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 1.8rem 1.6rem;
+      box-shadow: 0 4px 12px rgba(46, 91, 99, 0.06);
+      transition: box-shadow 0.18s ease;
+      border: 1px solid #d4e7eb;
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 24px rgba(42, 98, 108, 0.10);
+      border-color: #b5d9df;
+    }
+
+    .card h2 {
+      font-size: 1.4rem;
+      font-weight: 530;
+      margin-bottom: 1rem;
+      color: #0d5f67;
+      border-bottom: 2px dashed #c1dde3;
+      padding-bottom: 0.4rem;
+      display: inline-block;
+    }
+
+    .card p, .card li {
+      font-size: 1rem;
+      color: #1d3a40;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0.5rem;
+    }
+
+    .card li {
+      position: relative;
+      padding-left: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #3f959e;
+      font-weight: 600;
+    }
+
+    .highlight-tag {
+      display: inline-block;
+      background: #c6e6ec;
+      color: #08535a;
+      padding: 0.15rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.6rem;
+    }
+
+    .btn-soft {
+      display: inline-block;
+      background: transparent;
+      border: 1.5px solid #3d929b;
+      padding: 0.4rem 1.4rem;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #0b5b63;
+      cursor: default;
+      transition: 0.1s;
+      margin-top: 0.8rem;
+    }
+
+    .btn-soft:hover {
+      background: #d6f0f4;
+      border-color: #207c87;
+    }
+
+    .link-card {
+      background: #e6f3f6;
+      border: 1px solid #b7d7de;
+    }
+
+    .link-card .inline-link {
+      color: #0c6974;
+      font-weight: 540;
+      text-decoration: none;
+      border-bottom: 1px dotted #5ea8b3;
+    }
+
+    .link-card .inline-link:hover {
+      border-bottom: 2px solid #217b86;
+      color: #094d55;
+    }
+
+    .faq-item {
+      margin-bottom: 1.2rem;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 560;
+      color: #06464d;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-item p {
+      margin-left: 0.3rem;
+      color: #1a454d;
+    }
+
+    hr {
+      border: 0;
+      height: 2px;
+      background: linear-gradient(to right, #cce3e8, transparent);
+      margin: 2rem 0 1.5rem;
+    }
+
+    .footnote {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #426f78;
+      padding: 1.2rem 0 0.3rem;
+      border-top: 1px solid #d0e2e7;
+    }
+
+    /* 响应式 */
+    @media (min-width: 660px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero {
+        padding: 3.2rem 2.8rem;
+      }
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      .grid .span-2 {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+      .card {
+        padding: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- hero -->
+  <div class="hero">
+    <h1>UFC · 资料索引</h1>
+    <div class="sub">
+      从赛历、排名到选手数据 —— 一处汇集，定期整理。<br>
+      不做过度解读，只呈现可参考的格斗信息源。
+    </div>
+  </div>
+
+  <!-- 网格卡片 第一行：3张 -->
+  <div class="grid">
+    <!-- card 1: 摘要 -->
+    <div class="card">
+      <div class="highlight-tag">📌 摘要</div>
+      <h2>索引范围</h2>
+      <p>涵盖 UFC 近期赛事对阵、量级冠军变迁、选手战绩与官方统计。信息来自公开赛事数据库与官方媒体，经人工筛选去重，保留可追溯的条目。</p>
+      <p style="margin-top: 0.7rem;">适合快速查阅某一量级的冠军历史或下一期比赛安排，省去在多个站点间跳转的时间。</p>
+    </div>
+
+    <!-- card 2: 亮点 -->
+    <div class="card">
+      <div class="highlight-tag">⚡ 亮点</div>
+      <h2>整理特点</h2>
+      <ul>
+        <li>按时间线排列冠军战记录，附胜负方式与回合数</li>
+        <li>选手页面聚合近期采访摘要与赛前数据对比</li>
+        <li>每期比赛日提供官方称重结果与临时变更提示</li>
+        <li>索引页保持轻量，无自动播放视频或弹窗</li>
+      </ul>
+    </div>
+
+    <!-- card 3: 使用建议 -->
+    <div class="card">
+      <div class="highlight-tag">🧩 使用建议</div>
+      <h2>如何利用</h2>
+      <p>如果你是刚接触格斗的爱好者，可以从“量级冠军线”开始了解各个级别的代表人物。资深观众可使用“选手对战记录”功能分析过往 matchup 数据。</p>
+      <p style="margin-top: 0.8rem;">建议将页面加入书签，赛前 2–3 天查看最新对阵变动。</p>
+    </div>
+  </div>
+
+  <!-- 第二行 混合卡片：包含 a 标签链接 + FAQ 摘要 -->
+  <div class="grid">
+    <!-- 卡片：访问说明 (内含自然链接) -->
+    <div class="card link-card">
+      <div class="highlight-tag">🌐 可信访问</div>
+      <h2>信息源说明</h2>
+      <p>本索引以 UFC 官方口径为基础，交叉参考多家体育媒体与格斗数据分析站。如果你希望直接浏览官方赛事页、排名或新闻，推荐从 <a href="https://cn-main-ufc.com" class="inline-link">ufc</a> 开始。<br>该站点提供中文简体界面，包含完整赛程与选手档案。</p>
+      <p style="margin-top: 0.8rem;">所有转载数据均标注原始来源，不修改胜负记录与统计数据。</p>
+      <span class="btn-soft">· 定期校验 ·</span>
+    </div>
+
+    <!-- 卡片：FAQ 摘要 -->
+    <div class="card">
+      <div class="highlight-tag">❓ FAQ 摘要</div>
+      <h2>常见疑问</h2>
+      <div class="faq-item">
+        <strong>每个量级冠军多久更新一次？</strong>
+        <p>一般在官方宣布后 24 小时内更新。</p>
+      </div>
+      <div class="faq-item">
+        <strong>选手排名依据是什么？</strong>
+        <p>综合近 3 场比赛表现与对手强度，参考官方排名委员会投票。</p>
+      </div>
+      <div class="faq-item">
+        <strong>是否包含付费内容？</strong>
+        <p>索引页面不包含任何付费 paywall，外部链接可能导向官方票务或转播。</p>
+      </div>
+    </div>
+
+    <!-- 卡片：使用场景 -->
+    <div class="card">
+      <div class="highlight-tag">📋 适用场景</div>
+      <h2>信息碎片整理</h2>
+      <p>赛前做对战卡笔记、赛后复盘统计、写格斗相关内容时作为快捷引源。也适合在讨论组中分享某位选手的连续胜场记录。</p>
+      <p style="margin-top: 0.8rem;">索引本身不提供预测或盘口信息，保持资料中立。</p>
+    </div>
+  </div>
+
+  <!-- 额外提示区块（非卡片，平稳语调） -->
+  <div style="background: #eaf2f5; border-radius: 24px; padding: 1.5rem 1.8rem; margin: 1.5rem 0;">
+    <p style="font-weight: 500; color: #10555e; margin-bottom: 0.4rem;">📎 关于索引的更新节奏</p>
+    <p style="color: #1a4b54;">每月上旬与中旬各刷新一次，同步最新赛事结果。重大比赛日（如数字赛 PPV）结束后 48 小时内追加更新。如遇到临时更改对手或伤病退赛，会在页面顶部用提示条标注。</p>
+  </div>
+
+  <!-- 页脚 -->
+  <hr>
+  <div class="footnote">
+    <span>资料整理 · 仅供信息参考 · 无格斗推广性质</span><br>
+    <span style="opacity: 0.75;">页面版本 · 2504-01</span>
+  </div>
+</div>
+</body>
+</html>
